@@ -60,6 +60,7 @@ syn match  vbNumber		"\.\d\+\>"
 
 " String and Character contstants
 syn region  vbString		  start=+"+  end=+"+
+syn region  vbString		  start=+'+  end=+'+
 syn region  vbComment   start="/\*"  end="\*/" contains=vbTodo
 syn match   vbComment	 "//.*" contains=vbTodo
 syn region  vbLineNumber	start="^\d" end="\s"
