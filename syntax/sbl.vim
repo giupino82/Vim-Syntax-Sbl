@@ -181,8 +181,10 @@ syn match  vbNumber		"\.\d\+\>"
 
 " String and Character contstants
 syn region  vbString		  start=+"+  end=+"+
-syn region  vbComment	start="REM" end="$" contains=vbTodo
-syn region  vbComment   start="'"   end="$" contains=vbTodo
+" syn region  vbComment	start="REM" end="$" contains=vbTodo
+syn region  vbComment   start="/\*"  end="\*/"
+syn match   vbComment	 "//.*"
+" syn region  vbComment   start="'"   end="$" contains=vbTodo
 syn region  vbLineNumber	start="^\d" end="\s"
 syn match   vbTypeSpecifier  "[a-zA-Z0-9][\$%&!#]"ms=s+1
 
