@@ -2,7 +2,7 @@
 " Language:	Siebel VBScript + eScript files(ft=sbl)
 " Maintainer: Giuseppe Garofalo <giupino.garofalo@gmail.com>
 " Maintainer:	
-" Last Change:	Tue 17/10/2017 
+" Last Change:	Tue 23/10/2017 
 " 
 " Based on sbl vb syntax file by Mayuresh Kadu <mskadu@yahoo.com>
 " And needs to be in $VIM_HOME/vimfiles/syntax
@@ -18,7 +18,8 @@ elseif exists("b:current_syntax")
 endif
 
 " VB is case insensitive
-syn case ignore
+" syn case ignore
+" Siebel is case sensitive
 
 syn keyword vbStatement AppActivate Base Beep Call Case ChDir ChDrive Const
 syn keyword vbStatement Declare DefBool DefByte DefCur DefDate DefDbl DefDec
@@ -48,7 +49,7 @@ syn keyword vbFunction Partition Pmt PPmt PV QBColor Rate RGB Right RightB Rnd
 syn keyword vbFunction RTrim Second Seek Sgn Shell Sin SLN Space Spc Sqr StDev
 syn keyword vbFunction StDevP Str StrComp StrConv String Switch Sum SYD Tab Tan PropertySet Integer
 syn keyword vbFunction Time Timer TimeSerial TimeValue Trim TypeName UBound UCase
-syn keyword vbFunction Val Var VarP VarType Weekday Year
+syn keyword vbFunction Val var VarP VarType Weekday Year
 syn keyword vbFunction TheApplication throw this LoadUserAttributes chars float bool 
 syn keyword vbFunction undefined boolean Blob BlobDescriptor Buffer 
 syn keyword vbFunction BusComp BusObject CfgItem Clib CTIData CTIService Date Exception 
@@ -182,8 +183,8 @@ syn match  vbNumber		"\.\d\+\>"
 " String and Character contstants
 syn region  vbString		  start=+"+  end=+"+
 " syn region  vbComment	start="REM" end="$" contains=vbTodo
-syn region  vbComment   start="/\*"  end="\*/"
-syn match   vbComment	 "//.*"
+syn region  vbComment   start="/\*"  end="\*/" contains=vbTodo
+syn match   vbComment	 "//.*" contains=vbTodo
 " syn region  vbComment   start="'"   end="$" contains=vbTodo
 syn region  vbLineNumber	start="^\d" end="\s"
 syn match   vbTypeSpecifier  "[a-zA-Z0-9][\$%&!#]"ms=s+1
