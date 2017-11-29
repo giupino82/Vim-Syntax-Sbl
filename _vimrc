@@ -1,0 +1,108 @@
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/Vim/plugged')
+"    Plug 'vim-airline/vim-airline-themes'
+
+ "   Plug 'bling/vim-airline'
+    Plug 'itchyny/lightline.vim'
+    
+    Plug 'terryma/vim-multiple-cursors'    
+
+    Plug 'mbbill/undotree'
+
+    Plug 'scrooloose/nerdtree'    
+
+    Plug 'data-statiker/vim-xml'    
+
+    Plug 'altercation/vim-colors-solarized'
+    
+    Plug 'sukima/xmledit'
+
+    Plug 'ervandew/supertab'
+
+    Plug 'tpope/vim-repeat'
+
+    Plug 'svermeulen/vim-easyclip'
+
+" Initialize plugin system
+call plug#end()
+
+set nocompatible "toglie compatibilità con Vi
+syntax on "Visualizzazione sintassi
+colorscheme Solarized "Schema colori
+set number "Mostra numeri di riga
+set showmatch
+set ruler
+"mouse use
+set mouse=a
+"cd C:/Users/giuseppe.garofalo/Vim
+"set tw=360
+"set autoindent "indentazione automatica
+set smartindent "indentazione automatica intelligente
+"Set windows maximized at startup
+au GUIEnter * simalt ~x
+"toglie bkp file e swp file
+set nobackup
+set nowritebackup
+set noswapfile
+set nohidden
+
+set cursorline "evidenzia la riga corrente
+set relativenumber "numero di righe relative
+"tab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smarttab
+"Permette di incollare fuori Vim
+set clipboard=unnamed
+set ignorecase
+set smartcase
+"No wrap text automatico
+set nowrap
+" automatically cd into file directory
+"autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+"Mostra quello che scrivi come comando
+set showcmd
+
+"tab completation
+set wildmenu
+set wildmode=list:longest,full
+
+"Ricerca evidenziata e incrementale
+set hlsearch
+set incsearch
+
+set backspace=indent,eol,start " funzionalità backspace
+
+"persistnt_undo
+set undofile
+set undodir=C:\Users\giuseppe.garofalo\Vim\undodir 
+set undolevels=1000
+
+"set for lightline (mostra sempre la linea di stato)
+set laststatus=2
+set noshowmode "per nascondere l'ultima riga (la mostra il plugin)
+let g:lightline = { 
+    \ 'colorscheme': 'solarized' 
+    \ }
+" Set for vim-multiline
+" This allows one to a) search for the keyword using * b) turn search results into cursors with Alt-j
+set selection=inclusive
+nnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
+vnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
+
+"
+" EasyClip autoFormato on paste
+let g:EasyClipAutoFormat = 1
+
+" Remap F5 to pretty print XML
+nnoremap <silent> <F5> :<C-U>call xmlexpander#expand() <CR>
+" remap F7 to toggle UndoTree
+nnoremap <F7> :UndotreeToggle<cr>
+" remap F6 to toggle NerdTree
+nnoremap <F6> :NERDTreeToggle<cr>
+" remap F4 to wrap text
+nnoremap <F4> :set wrap!<cr>
