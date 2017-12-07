@@ -28,12 +28,16 @@ call plug#begin('~/Vim/plugged')
 " Initialize plugin system
 call plug#end()
 
-set nocompatible "toglie compatibilit‡ con Vi
+set nocompatible "toglie compatibilit√† con Vi
 syntax on "Visualizzazione sintassi
 colorscheme Solarized "Schema colori
 set number "Mostra numeri di riga
 set showmatch
 set ruler
+"
+"Carica plugin & indent del file aperto
+filetype indent plugin on
+
 "mouse use
 set mouse=a
 "cd C:/Users/giuseppe.garofalo/Vim
@@ -75,7 +79,7 @@ set wildmode=list:longest,full
 set hlsearch
 set incsearch
 
-set backspace=indent,eol,start " funzionalit‡ backspace
+set backspace=indent,eol,start " funzionalit√† backspace
 
 "persistnt_undo
 set undofile
