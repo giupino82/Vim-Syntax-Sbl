@@ -110,3 +110,9 @@ nnoremap <F7> :UndotreeToggle<cr>
 nnoremap <F6> :NERDTreeToggle<cr>
 " remap F4 to wrap text
 nnoremap <F4> :set wrap!<cr>
+
+"Usa il Tab e Shift Tab per indentare e spostare il testo 
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
