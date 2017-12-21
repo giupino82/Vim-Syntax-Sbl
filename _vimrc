@@ -2,9 +2,11 @@
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/Vim/plugged')
-"    Plug 'vim-airline/vim-airline-themes'
 
- "   Plug 'bling/vim-airline'
+    Plug 'morhetz/gruvbox'
+
+    Plug 'vim-scripts/sessionman.vim'
+
     Plug 'itchyny/lightline.vim'
     
     Plug 'terryma/vim-multiple-cursors'    
@@ -30,14 +32,16 @@ call plug#end()
 
 set nocompatible "toglie compatibilità con Vi
 syntax on "Visualizzazione sintassi
-colorscheme Solarized "Schema colori
+colorscheme gruvbox "Schema colori
+"colorscheme Solarized "Schema colori
+" font recuperato qui https://github.com/belluzj/fantasque-sans
+set guifont=Fantasque_Sans_Mono:h10:cANSI:qDRAFT
 set number "Mostra numeri di riga
 set showmatch
 set ruler
 "
 "Carica plugin & indent del file aperto
 filetype indent plugin on
-
 "mouse use
 set mouse=a
 "cd C:/Users/giuseppe.garofalo/Vim
@@ -75,6 +79,7 @@ set showcmd
 set wildmenu
 set wildmode=list:longest,full
 
+
 "Ricerca evidenziata e incrementale
 set hlsearch
 set incsearch
@@ -90,7 +95,7 @@ set undolevels=1000
 set laststatus=2
 set noshowmode "per nascondere l'ultima riga (la mostra il plugin)
 let g:lightline = { 
-    \ 'colorscheme': 'solarized' 
+    \ 'colorscheme': 'gruvbox' 
     \ }
 " Set for vim-multiline
 " This allows one to a) search for the keyword using * b) turn search results into cursors with Alt-j
@@ -103,7 +108,7 @@ vnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
 let g:EasyClipAutoFormat = 1
 
 " Remap F5 to pretty print XML
-nnoremap <silent> <F5> :<C-U>call xmlexpander#expand() <CR>
+ nnoremap <silent> <F5> :<C-U>call xmlexpander#expand() <CR>
 " remap F7 to toggle UndoTree
 nnoremap <F7> :UndotreeToggle<cr>
 " remap F6 to toggle NerdTree
