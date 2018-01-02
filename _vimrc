@@ -3,29 +3,29 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/Vim/plugged')
 
-    Plug 'morhetz/gruvbox'
+    Plug 'morhetz/gruvbox' "color scheme
 
-    Plug 'vim-scripts/sessionman.vim'
+    Plug 'vim-scripts/sessionman.vim' "Save, open, etc  session: SessionSave, SessionOpen
 
-    Plug 'itchyny/lightline.vim'
+    Plug 'itchyny/lightline.vim' "awesome status line (bottom page)
     
-    Plug 'terryma/vim-multiple-cursors'    
+    Plug 'terryma/vim-multiple-cursors' "Multiple selection like Sublime-text: ctrl-n & ctrl-p & ctrl-x (evidenzia il successivo, toglie selezione su quello sotto il cursore
+                                        " salta una selezione   
+    Plug 'mbbill/undotree' "Gestore Undotree
 
-    Plug 'mbbill/undotree'
+    Plug 'scrooloose/nerdtree' "folder visualization
 
-    Plug 'scrooloose/nerdtree'    
+    Plug 'data-statiker/vim-xml'   "xml pretty print F5. (salvata macro @x per gli errori in linee con property)
 
-    Plug 'data-statiker/vim-xml'    
-
-    Plug 'altercation/vim-colors-solarized'
+    Plug 'altercation/vim-colors-solarized' "color schema
     
-    Plug 'sukima/xmledit'
+    Plug 'sukima/xmledit' "tool for xml edit
 
-    Plug 'ervandew/supertab'
+    Plug 'ervandew/supertab' "let TAB do magic! (autocomplete)
 
     Plug 'tpope/vim-repeat'
 
-    Plug 'svermeulen/vim-easyclip'
+    Plug 'svermeulen/vim-easyclip' "to modify the use of dd, yy, mm etc...
 
 " Initialize plugin system
 call plug#end()
@@ -50,11 +50,12 @@ filetype indent plugin on
 "mouse use
 set mouse=a
 "cd C:/Users/giuseppe.garofalo/Vim
-"set tw=360
+"
 "set autoindent "indentazione automatica
 set smartindent "indentazione automatica intelligente
 "Set windows maximized at startup
 au GUIEnter * simalt ~x
+"
 "toglie bkp file e swp file
 set nobackup
 set nowritebackup
@@ -63,12 +64,14 @@ set nohidden
 
 set cursorline "evidenzia la riga corrente
 set relativenumber "numero di righe relative
+"
 "tab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smarttab
+"
 "Permette di incollare fuori Vim
 set clipboard=unnamed
 set ignorecase
@@ -84,6 +87,8 @@ set showcmd
 set wildmenu
 set wildmode=list:longest,full
 
+" Set utf8 as standard encoding 
+set encoding=utf8
 
 "Ricerca evidenziata e incrementale
 set hlsearch
@@ -116,14 +121,14 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " EasyClip autoFormato on paste
 let g:EasyClipAutoFormat = 1
 
-" Remap F5 to pretty print XML
- nnoremap <silent> <F5> :<C-U>call xmlexpander#expand() <CR>
-" remap F7 to toggle UndoTree
-nnoremap <F7> :UndotreeToggle<cr>
-" remap F6 to toggle NerdTree
-nnoremap <F6> :NERDTreeToggle<cr>
 " remap F4 to wrap text
 nnoremap <F4> :set wrap!<cr>
+" Remap F5 to pretty print XML
+nnoremap <silent> <F5> :<C-U>call xmlexpander#expand() <CR>
+" remap F6 to toggle NerdTree
+nnoremap <F6> :NERDTreeToggle<cr>
+" remap F7 to toggle UndoTree
+nnoremap <F7> :UndotreeToggle<cr>
 
 "Usa il Tab e Shift Tab per indentare e spostare il testo 
 nnoremap <Tab> >>_
@@ -134,6 +139,14 @@ vnoremap <S-Tab> <gv
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
+"Navigazione tra i tab
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
 
 " Some function
 function! VisualSelection(direction, extra_filter) range
