@@ -30,7 +30,7 @@ call plug#begin('~/Vim/plugged')
 " Initialize plugin system
 call plug#end()
 
-set nocompatible "toglie compatibilità con Vi
+"set nocompatible "toglie compatibilità con Vi --non più necessario
 syntax on "Visualizzazione sintassi
 colorscheme gruvbox "Schema colori
 "colorscheme Solarized "Schema colori
@@ -45,14 +45,14 @@ set ruler
 let mapleader = ","
 let g:mapleader = ","
 "
-"Carica plugin & indent del file aperto
-filetype indent plugin on
 "mouse use
 set mouse=a
 "cd C:/Users/giuseppe.garofalo/Vim
 "
-"set autoindent "indentazione automatica
-set smartindent "indentazione automatica intelligente
+set autoindent "indentazione automatica
+"set smartindent "indentazione automatica intelligente
+"Carica plugin & indent del file aperto
+filetype plugin indent on
 "Set windows maximized at startup
 au GUIEnter * simalt ~x
 "
@@ -66,20 +66,18 @@ set cursorline "evidenzia la riga corrente
 set relativenumber "numero di righe relative
 "
 "tab
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set smarttab
+"set smarttab
 "
 "Permette di incollare fuori Vim
 set clipboard=unnamed
-set ignorecase
-set smartcase
+"
 "No wrap text automatico
 set nowrap
-" automatically cd into file directory
-"autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+"
 "Mostra quello che scrivi come comando
 set showcmd
 
@@ -93,6 +91,8 @@ set encoding=utf8
 "Ricerca evidenziata e incrementale
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 set backspace=indent,eol,start " funzionalità backspace
 
@@ -147,6 +147,7 @@ nnoremap tl  :tablast<CR>
 nnoremap tt  :tabedit<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+nnoremap tn  :tabnew<CR>
 
 " Some function
 function! VisualSelection(direction, extra_filter) range
