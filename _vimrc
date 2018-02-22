@@ -2,6 +2,9 @@
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/Vim/plugged')
+    Plug 'thiagoalessio/rainbow_levels.vim'
+
+    Plug 'raimondi/delimitmate'
 
     Plug 'morhetz/gruvbox' "color scheme
 
@@ -138,6 +141,21 @@ vnoremap <S-Tab> <gv
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
+"
+" Rainbow Level conf
+" Creating a mapping to turn RainbowLevel on and off:
+map <leader>l :RainbowLevelsToggle<cr>
+" Gruvbox theme for RainbowLevel
+let g:rainbow_levels = [
+            \{'ctermfg': 142, 'guifg': '#b8bb26'},
+            \{'ctermfg': 108, 'guifg': '#8ec07c'},
+            \{'ctermfg': 109, 'guifg': '#83a598'},
+            \{'ctermfg': 175, 'guifg': '#d3869b'},
+            \{'ctermfg': 167, 'guifg': '#fb4934'},
+            \{'ctermfg': 208, 'guifg': '#fe8019'},
+            \{'ctermfg': 214, 'guifg': '#fabd2f'},
+            \{'ctermfg': 223, 'guifg': '#ebdbb2'},
+            \{'ctermfg': 245, 'guifg': '#928374'}]
 
 "Navigazione tra i tab
 nnoremap th  :tabfirst<CR>
