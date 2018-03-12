@@ -124,6 +124,11 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " EasyClip autoFormato on paste
 let g:EasyClipAutoFormat = 1
 
+"Show command history on F1
+nnoremap <F1> q: 
+"Show search history on F2
+nnoremap <F2> q/ 
+"
 " remap F4 to wrap text
 nnoremap <F4> :set wrap!<cr>
 " Remap F5 to pretty print XML
