@@ -13,7 +13,7 @@ call plug#begin('~/Vim/plugged')
     Plug 'itchyny/lightline.vim' "awesome status line (bottom page)
     
     Plug 'terryma/vim-multiple-cursors' "Multiple selection like Sublime-text: ctrl-n & ctrl-p & ctrl-x (evidenzia il successivo, toglie selezione su quello sotto il cursore
-                                        " salta una selezione   
+                                        " salta una selezione  --> poi c: per  change text, I per inserire  all'inizio del testo, A per inserire  in coda
     Plug 'mbbill/undotree' "Gestore Undotree
 
     Plug 'scrooloose/nerdtree' "folder visualization
@@ -29,6 +29,9 @@ call plug#begin('~/Vim/plugged')
     Plug 'tpope/vim-repeat'
 
     Plug 'svermeulen/vim-easyclip' "to modify the use of dd, yy, mm etc...
+
+    Plug 'tpope/vim-surround'   "surround made fun, cs[( -> Change Surround [ to (; ds' -> Delete Surround; ysiw] (iw is a text object) to surround a word; yss) to surround a line; 
+                                "Press a capital V (for linewise visual mode) followed by S<p class="important"> To surround a line
 
 " Initialize plugin system
 call plug#end()
@@ -146,6 +149,10 @@ vnoremap <S-Tab> <gv
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
+"
+" <leader>* to count occ of word under cursor
+map <leader>* *<C-O>:%s///gn<CR>
+
 "
 " Rainbow Level conf
 " Creating a mapping to turn RainbowLevel on and off:
