@@ -153,6 +153,10 @@ map <silent> <leader><cr> :noh<cr>
 " <leader>* to count occ of word under cursor
 map <leader>* *<C-O>:%s///gn<CR>
 
+" save with <leader>s (also in insert mode)
+nnoremap <leader>s :w<CR> 
+inoremap <leader>s <C-c>:w<CR>
+
 "
 " Rainbow Level conf
 " Creating a mapping to turn RainbowLevel on and off:
