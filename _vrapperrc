@@ -1,0 +1,43 @@
+" With a map leader it's possible to do extra key combinations
+" " like <leader>w saves the current file
+let mapleader = ","
+"let g:mapleader = ","
+
+set autoindent "indentazione automatica
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+"Permette di incollare fuori Vim
+set clipboard=unnamed
+
+nnoremap <leader>n :noh<CR> 
+nnoremap <leader>s :w<CR> 
+nnoremap <leader>m :maximize<CR> 
+
+" delete without yanking
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+
+nnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>d ""d
+
+"Navigazione tra i tab
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+"nnoremap tt  :tabedit<Space>
+"nnoremap tm  :tabm<Space>
+"nnoremap td  :tabclose<CR>
+nnoremap tn  :tabnew<CR>
+
+set gvimpath="C:\Program Files (x86)\Vim\vim81\gvim.exe"
+
+"tab completation
+"set wildmenu
+"set wildmode=list:longest,full
