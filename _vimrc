@@ -9,9 +9,11 @@ call plug#begin('~/Vim/plugged')
     Plug 'morhetz/gruvbox' "color scheme
 
     Plug 'vim-scripts/sessionman.vim' "Save, open, etc  session: SessionSave, SessionOpen
-
-    Plug 'itchyny/lightline.vim' "awesome status line (bottom page)
     
+    if has("gui_running")
+        Plug 'itchyny/lightline.vim' "awesome status line (bottom page)
+    endif
+
     Plug 'terryma/vim-multiple-cursors' "Multiple selection like Sublime-text: ctrl-n & ctrl-p & ctrl-x (evidenzia il successivo, toglie selezione su quello sotto il cursore
                                         " salta una selezione  --> poi c: per  change text, I per inserire  all'inizio del testo, A per inserire  in coda
     Plug 'mbbill/undotree' "Gestore Undotree
@@ -32,6 +34,10 @@ call plug#begin('~/Vim/plugged')
 
     Plug 'tpope/vim-surround'   "surround made fun, cs[( -> Change Surround [ to (; ds' -> Delete Surround; ysiw] (iw is a text object) to surround a word; yss) to surround a line; 
                                 "Press a capital V (for linewise visual mode) followed by S<p class="important"> To surround a line
+    "Plug 'w0rp/ale'     "Asynchronous Lint Engine
+    Plug 'KabbAmine/lazyList.vim' "Crea Liste 
+
+    Plug 'junegunn/vim-easy-align' "Folle plugin di allineamento
 
 " Initialize plugin system
 call plug#end()
@@ -59,8 +65,11 @@ set autoindent "indentazione automatica
 "set smartindent "indentazione automatica intelligente
 "Carica plugin & indent del file aperto
 filetype plugin indent on
-"Set windows maximized at startup
-au GUIEnter * simalt ~x
+
+if has("gui_running")
+    "Set windows maximized at startup
+    au GUIEnter * simalt ~x
+endif
 "
 "toglie bkp file e swp file
 set nobackup
@@ -86,6 +95,11 @@ set nowrap
 "
 "Mostra quello che scrivi come comando
 set showcmd
+
+"Folding
+"set foldmethod=indent
+"set foldcolumn=4 " the number of columns to use for folding display at the left
+"set foldlevel=99
 
 "tab completation
 set wildmenu
@@ -140,7 +154,9 @@ nnoremap <silent> <F5> :<C-U>call xmlexpander#expand() <CR>
 nnoremap <F6> :NERDTreeToggle<cr>
 " remap F7 to toggle UndoTree
 nnoremap <F7> :UndotreeToggle<cr>
-
+" move vertically by visual line with j and k
+"nnoremap j gj 
+"nnoremap k gk
 "Usa il Tab e Shift Tab per indentare e spostare il testo 
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
@@ -157,7 +173,13 @@ map <leader>* *<C-O>:%s///gn<CR>
 nnoremap <leader>s :w<CR> 
 inoremap <leader>s <C-c>:w<CR>
 
+" SaveSession with <leader>ss
+nnoremap <leader>ss :SessionSave<CR>
 "
+" Move visual selection
+"vnoremap J :m '>+1gv=gv<CR>
+"vnoremap K :m '<-2gv=gv<CR>
+
 " Rainbow Level conf
 " Creating a mapping to turn RainbowLevel on and off:
 map <leader>l :RainbowLevelsToggle<cr>
@@ -182,6 +204,47 @@ nnoremap tt  :tabedit<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 nnoremap tn  :tabnew<CR>
+
+"LazyList 1. - * 
+"
+" Note the space after the command
+nnoremap gli :LazyList 
+vnoremap gli :LazyList 
+let g:lazylist_omap = 'il'
+let g:lazylist_maps = [
+            \ 'gl',
+            \ {
+            \ 'l'  : '',
+            \ '*'  : '* ',
+            \ '-'   : '- ',
+            \ '+'   : '+ ',
+            \ 't'   : '- [ ] ',
+            \ '2'  : '%2%. ',
+            \ '3'  : '%3%. ',
+            \ '4'  : '%4%. ',
+            \ '5'  : '%5%. ',
+            \ '6'  : '%6%. ',
+            \ '7'  : '%7%. ',
+            \ '8'  : '%8%. ',
+            \ '9'  : '%9%. ',
+            \ '.1' : '1.%1%. ',
+            \ '.2' : '2.%1%. ',
+            \ '.3' : '3.%1%. ',
+            \ '.4' : '4.%1%. ',
+            \ '.5' : '5.%1%. ',
+            \ '.6' : '6.%1%. ',
+            \ '.7' : '7.%1%. ',
+            \ '.8' : '8.%1%. ',
+            \ '.9' : '9.%1%. ',
+            \ }
+            \ ]
+
+"easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Some function
 function! VisualSelection(direction, extra_filter) range
