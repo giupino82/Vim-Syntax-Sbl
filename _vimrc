@@ -2,7 +2,7 @@
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/Vim/plugged')
-    Plug 'thiagoalessio/rainbow_levels.vim'
+""    Plug 'thiagoalessio/rainbow_levels.vim'
 
     Plug 'raimondi/delimitmate'
 
@@ -38,6 +38,8 @@ call plug#begin('~/Vim/plugged')
     Plug 'KabbAmine/lazyList.vim' "Crea Liste 
 
     Plug 'junegunn/vim-easy-align' "Folle plugin di allineamento
+
+    Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
 call plug#end()
@@ -116,6 +118,10 @@ set smartcase
 
 set backspace=indent,eol,start " funzionalità backspace
 
+"split
+set splitbelow
+set splitright
+
 "persistnt_undo
 set undofile
 set undodir=C:\Users\giuseppe.garofalo\Vim\undodir 
@@ -124,9 +130,20 @@ set undolevels=1000
 "set for lightline (mostra sempre la linea di stato)
 set laststatus=2
 set noshowmode "per nascondere l'ultima riga (la mostra il plugin)
-let g:lightline = { 
-    \ 'colorscheme': 'gruvbox' 
-    \ }
+"let g:lightline = { 
+"    \ 'colorscheme': 'gruvbox' 
+"    \ }
+"
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 " Set for vim-multiline
 " This allows one to a) search for the keyword using * b) turn search results into cursors with Alt-j
 set selection=inclusive
@@ -140,6 +157,11 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 "
 " EasyClip autoFormato on paste
 let g:EasyClipAutoFormat = 1
+
+"Go un current folder with <leader>cd
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+"OpenNerdTree on current file
+map <leader>r :NERDTreeFind<cr>
 
 "Show command history on F1
 nnoremap <F1> q: 
@@ -173,12 +195,21 @@ map <leader>* *<C-O>:%s///gn<CR>
 nnoremap <leader>s :w<CR> 
 inoremap <leader>s <C-c>:w<CR>
 
+"restore Mark obsucred by vim-easyclip
+nnoremap <leader>m m
+
 " SaveSession with <leader>ss
 nnoremap <leader>ss :SessionSave<CR>
 "
 " Move visual selection
 "vnoremap J :m '>+1gv=gv<CR>
 "vnoremap K :m '<-2gv=gv<CR>
+
+"Split Move
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Rainbow Level conf
 " Creating a mapping to turn RainbowLevel on and off:
