@@ -41,6 +41,12 @@ call plug#begin('~/Vim/plugged')
 
     Plug 'tpope/vim-fugitive'
 
+    "Plug 'prabirshrestha/async.vim'
+    
+    "Plug 'prabirshrestha/vim-lsp'
+
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " Initialize plugin system
 call plug#end()
 
@@ -138,12 +144,24 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'fugitive#head',
+      \   'cocstatus': 'coc#status'
       \ },
       \ }
+
+" Coc command
+" Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
+"CocCommand coc-java compile progect
+nnoremap <leader>jc :CocCommand java.workspace.compile<cr>
+nnoremap <leader>o :CocCommand java.action.organizeImports<cr>
+nnoremap <leader>cl :CocCommand java.clean.workspace<cr>
+nnoremap <leader>up :CocCommand java.projectConfiguration.update<cr>
+
 " Set for vim-multiline
 " This allows one to a) search for the keyword using * b) turn search results into cursors with Alt-j
 set selection=inclusive
@@ -162,12 +180,15 @@ let g:EasyClipAutoFormat = 1
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 "OpenNerdTree on current file
 map <leader>r :NERDTreeFind<cr>
+"Go to c:\Utils\Progetti with <leader>cdp
+nnoremap <leader>cdp :cd c:\Utils\Progetti<CR>:pwd<CR>
 
 "Show command history on F1
 nnoremap <F1> q: 
 "Show search history on F2
 nnoremap <F2> q/ 
-"
+"remap F3 to open terminal
+nnoremap <F3> :terminal<cr>
 " remap F4 to wrap text
 nnoremap <F4> :set wrap!<cr>
 " Remap F5 to pretty print XML
@@ -213,18 +234,18 @@ nnoremap <C-H> <C-W><C-H>
 
 " Rainbow Level conf
 " Creating a mapping to turn RainbowLevel on and off:
-map <leader>l :RainbowLevelsToggle<cr>
-" Gruvbox theme for RainbowLevel
-let g:rainbow_levels = [
-            \{'ctermfg': 142, 'guifg': '#b8bb26'},
-            \{'ctermfg': 108, 'guifg': '#8ec07c'},
-            \{'ctermfg': 109, 'guifg': '#83a598'},
-            \{'ctermfg': 175, 'guifg': '#d3869b'},
-            \{'ctermfg': 167, 'guifg': '#fb4934'},
-            \{'ctermfg': 208, 'guifg': '#fe8019'},
-            \{'ctermfg': 214, 'guifg': '#fabd2f'},
-            \{'ctermfg': 223, 'guifg': '#ebdbb2'},
-            \{'ctermfg': 245, 'guifg': '#928374'}]
+"map <leader>l :RainbowLevelsToggle<cr>
+"" Gruvbox theme for RainbowLevel
+"let g:rainbow_levels = [
+"            \{'ctermfg': 142, 'guifg': '#b8bb26'},
+"            \{'ctermfg': 108, 'guifg': '#8ec07c'},
+"            \{'ctermfg': 109, 'guifg': '#83a598'},
+"            \{'ctermfg': 175, 'guifg': '#d3869b'},
+"            \{'ctermfg': 167, 'guifg': '#fb4934'},
+"            \{'ctermfg': 208, 'guifg': '#fe8019'},
+"            \{'ctermfg': 214, 'guifg': '#fabd2f'},
+"            \{'ctermfg': 223, 'guifg': '#ebdbb2'},
+"            \{'ctermfg': 245, 'guifg': '#928374'}]
 
 "Navigazione tra i tab
 nnoremap th  :tabfirst<CR>
@@ -294,3 +315,27 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+"LSP Java
+""if executable('java') && filereadable(expand('~/Vim/lsp/plugin/sorg.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar'))
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'eclipse.jdt.ls',
+"        \ 'cmd': {server_info->[
+"        \     'java',
+"        \     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+"        \     '-Dosgi.bundles.defaultStartLevel=4',
+"        \     '-Declipse.product=org.eclipse.jdt.ls.core.product',
+"        \     '-Dlog.level=ALL',
+"        \     '-noverify',
+"        \     '-Dfile.encoding=UTF-8',
+"        \     '-Xmx1G',
+"        \     '-jar',
+"        \     expand('~/Vim/lsp/plugin/sorg.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar'),
+"        \     '-configuration',
+"        \     expand('~/Vim/lsp/config_win'),
+"        \     '-data',
+"        \     getcwd()
+"        \ ]},
+"        \ 'whitelist': ['java'],
+"        \ })
+"endif
