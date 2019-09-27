@@ -72,7 +72,7 @@ let g:mapleader = ","
 "
 "mouse use
 set mouse=a
-"cd C:/Users/giuseppe.garofalo/Vim
+
 "
 set autoindent "indentazione automatica
 "set smartindent "indentazione automatica intelligente
@@ -135,7 +135,7 @@ set splitright
 
 "persistnt_undo
 set undofile
-set undodir=C:\Users\giuseppe.garofalo\Vim\undodir 
+set undodir=C:\Users\xxx.xxx\Vim\undodir 
 set undolevels=1000
 
 "====================LightLine Plugin
@@ -158,7 +158,7 @@ let g:lightline = {
       \ },
       \ }
 
-"====================LightLine Plugin
+"====================coc.nvim Plugin
 " Coc command
 " Use auocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
@@ -391,27 +391,3 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
-"LSP Java
-""if executable('java') && filereadable(expand('~/Vim/lsp/plugin/sorg.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar'))
-"    au User lsp_setup call lsp#register_server({
-"        \ 'name': 'eclipse.jdt.ls',
-"        \ 'cmd': {server_info->[
-"        \     'java',
-"        \     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-"        \     '-Dosgi.bundles.defaultStartLevel=4',
-"        \     '-Declipse.product=org.eclipse.jdt.ls.core.product',
-"        \     '-Dlog.level=ALL',
-"        \     '-noverify',
-"        \     '-Dfile.encoding=UTF-8',
-"        \     '-Xmx1G',
-"        \     '-jar',
-"        \     expand('~/Vim/lsp/plugin/sorg.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar'),
-"        \     '-configuration',
-"        \     expand('~/Vim/lsp/config_win'),
-"        \     '-data',
-"        \     getcwd()
-"        \ ]},
-"        \ 'whitelist': ['java'],
-"        \ })
-"endif
