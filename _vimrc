@@ -66,7 +66,7 @@ let g:mapleader = ","
 "
 "mouse use
 set mouse=a
-"cd C:/Users/giuseppe.garofalo/Vim
+"cd C:/Users/xxx.xxx/Vim
 "
 set autoindent "indentazione automatica
 "set smartindent "indentazione automatica intelligente
@@ -135,7 +135,7 @@ set splitright
 
 "persistnt_undo
 set undofile
-set undodir=C:\Users\giuseppe.garofalo\Vim\undodir 
+set undodir=C:\Users\xxx.xxx\Vim\undodir 
 set undolevels=1000
 
 "====================LightLine Plugin
