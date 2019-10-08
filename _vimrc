@@ -2,13 +2,14 @@
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/Vim/plugged')
-""    Plug 'thiagoalessio/rainbow_levels.vim'
-
     Plug 'raimondi/delimitmate'
 
     Plug 'morhetz/gruvbox' "color scheme
 
-    Plug 'vim-scripts/sessionman.vim' "Save, open, etc  session: SessionSave, SessionOpen
+    "Serve per vim-session
+    Plug 'xolox/vim-misc'
+"    Plug 'vim-scripts/sessionman.vim' "Save, open, etc  session: SessionSave, SessionOpen
+    Plug 'xolox/vim-session'
     
     if has("gui_running")
         Plug 'itchyny/lightline.vim' "awesome status line (bottom page)
@@ -22,9 +23,9 @@ call plug#begin('~/Vim/plugged')
 
     Plug 'data-statiker/vim-xml'   "xml pretty print F5. (salvata macro @x per gli errori in linee con property)
 
-    Plug 'altercation/vim-colors-solarized' "color schema
+"    Plug 'altercation/vim-colors-solarized' "color schema
     
-    Plug 'sukima/xmledit' "tool for xml edit
+"    Plug 'sukima/xmledit' "tool for xml edit
 
     Plug 'ervandew/supertab' "let TAB do magic! (autocomplete)
 
@@ -34,18 +35,11 @@ call plug#begin('~/Vim/plugged')
 
     Plug 'tpope/vim-surround'   "surround made fun, cs[( -> Change Surround [ to (; ds' -> Delete Surround; ysiw] (iw is a text object) to surround a word; yss) to surround a line; 
                                 "Press a capital V (for linewise visual mode) followed by S<p class="important"> To surround a line
-    "Plug 'w0rp/ale'     "Asynchronous Lint Engine
     Plug 'KabbAmine/lazyList.vim' "Crea Liste 
 
     Plug 'junegunn/vim-easy-align' "Folle plugin di allineamento
 
     Plug 'tpope/vim-fugitive'
-
-    "Plug 'prabirshrestha/async.vim'
-    
-    "Plug 'prabirshrestha/vim-lsp'
-
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
 call plug#end()
@@ -72,7 +66,7 @@ let g:mapleader = ","
 "
 "mouse use
 set mouse=a
-
+"cd C:/Users/giuseppe.garofalo/Vim
 "
 set autoindent "indentazione automatica
 "set smartindent "indentazione automatica intelligente
@@ -94,9 +88,9 @@ set cursorline "evidenzia la riga corrente
 set relativenumber "numero di righe relative
 "
 "tab
-set tabstop=8
-set shiftwidth=4
-set softtabstop=4
+set tabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 "set smarttab
 "
@@ -108,6 +102,12 @@ set nowrap
 "
 "Mostra quello che scrivi come comando
 set showcmd
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
 
 "Folding
 "set foldmethod=indent
@@ -135,7 +135,7 @@ set splitright
 
 "persistnt_undo
 set undofile
-set undodir=C:\Users\xxx.xxx\Vim\undodir 
+set undodir=C:\Users\giuseppe.garofalo\Vim\undodir 
 set undolevels=1000
 
 "====================LightLine Plugin
@@ -146,28 +146,30 @@ set noshowmode "per nascondere l'ultima riga (la mostra il plugin)
 "    \ 'colorscheme': 'gruvbox' 
 "    \ }
 "
+"let g:lightline = {
+"      \ 'colorscheme': 'gruvbox',
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'gitbranch': 'fugitive#head',
+"      \   'cocstatus': 'coc#status'
+"      \ },
+"      \ }
+
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status'
+      \   'gitbranch': 'fugitive#head'
       \ },
       \ }
-
-"====================coc.nvim Plugin
+"====================LightLine Plugin
 " Coc command
-" Use auocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-"CocCommand coc-java compile progect
-nnoremap <leader>jc :CocCommand java.workspace.compile<cr>
-nnoremap <leader>o :CocCommand java.action.organizeImports<cr>
-nnoremap <leader>cl :CocCommand java.clean.workspace<cr>
-nnoremap <leader>up :CocCommand java.projectConfiguration.update<cr>
 
 "====================Remap
 " make sarches always appear in centre of page
@@ -312,67 +314,8 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-"====================coc.nvim Plugin
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-"inoremap <silent><expr> <TAB>
-"            \ pumvisible() ? "\<C-n>" :
-"            \ <SID>check_back_space() ? "\<TAB>" :
-"            \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-"function! s:check_back_space() abort
-"    let col = col('.') - 1
-"    return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
+"Session manager
+let g:session_autosave = 'no'
 
 " Some function
 function! VisualSelection(direction, extra_filter) range
