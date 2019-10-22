@@ -12,7 +12,9 @@ call plug#begin('~/Vim/plugged')
     Plug 'xolox/vim-session'
     
     if has("gui_running")
-        Plug 'itchyny/lightline.vim' "awesome status line (bottom page)
+"        Plug 'itchyny/lightline.vim' "awesome status line (bottom page)
+        Plug 'vim-airline/vim-airline'
+        Plug 'vim-airline/vim-airline-themes'
     endif
 
     Plug 'terryma/vim-multiple-cursors' "Multiple selection like Sublime-text: ctrl-n & ctrl-p & ctrl-x (evidenzia il successivo, toglie selezione su quello sotto il cursore
@@ -66,7 +68,7 @@ let g:mapleader = ","
 "
 "mouse use
 set mouse=a
-"cd C:/Users/xxx.xxx/Vim
+"cd C:/Users/xxx/Vim
 "
 set autoindent "indentazione automatica
 "set smartindent "indentazione automatica intelligente
@@ -88,9 +90,9 @@ set cursorline "evidenzia la riga corrente
 set relativenumber "numero di righe relative
 "
 "tab
-set tabstop=4
-set shiftwidth=2
-set softtabstop=2
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 "set smarttab
 "
@@ -135,7 +137,7 @@ set splitright
 
 "persistnt_undo
 set undofile
-set undodir=C:\Users\xxx.xxx\Vim\undodir 
+set undodir=C:\Users\xxx\Vim\undodir 
 set undolevels=1000
 
 "====================LightLine Plugin
@@ -158,17 +160,21 @@ set noshowmode "per nascondere l'ultima riga (la mostra il plugin)
 "      \ },
 "      \ }
 
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
+"let g:lightline = {
+"      \ 'colorscheme': 'gruvbox',
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'gitstatus', 'readonly', 'filename', 'modified' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'gitbranch': 'fugitive#head',
+"      \   'gitstatus': 'fugitive#statusline'
+"      \ },
+"      \ }
 "====================LightLine Plugin
+"Airline StatusBar
+let g:airline_theme='gruvbox'
+"
 " Coc command
 
 "====================Remap
