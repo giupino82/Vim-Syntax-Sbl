@@ -21,22 +21,32 @@ nnoremap x "_x
 nnoremap d "_d
 nnoremap D "_D
 vnoremap d "_d
+nnoremap c "_c
+vnoremap c "_c
 
 nnoremap <leader>d ""d
 nnoremap <leader>D ""D
 vnoremap <leader>d ""d
 
+"Remap di Ctrl-A (+1) con leader
+nnoremap <leader><C-A> <C-A>
+
 "Navigazione tra i tab
-nnoremap th  :tabfirst<CR>
-nnoremap tk  :tabnext<CR>
-nnoremap tj  :tabprev<CR>
-nnoremap tl  :tablast<CR>
+"nnoremap th  :tabfirst<CR>
+"nnoremap tk  :tabnext<CR>
+"nnoremap tj  :tabprev<CR>
+"nnoremap tl  :tablast<CR>
+nnoremap <C-H>  :tabfirst<CR>
+nnoremap <C-K>  :tabnext<CR>
+nnoremap <C-J>  :tabprev<CR>
+nnoremap <C-L>  :tablast<CR>
+
 "nnoremap tt  :tabedit<Space>
 "nnoremap tm  :tabm<Space>
 "nnoremap td  :tabclose<CR>
 nnoremap tn  :tabnew<CR>
 
-set gvimpath="C:\Program Files (x86)\Vim\vim81\gvim.exe"
+set gvimpath="C:\Program Files (x86)\Vim\vim82\gvim.exe"
 
 "tab completation
 "set wildmenu
