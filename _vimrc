@@ -47,6 +47,8 @@ call plug#begin('~/Vim/plugged')
 
     Plug 'easymotion/vim-easymotion'
 
+    Plug 'nathanaelkane/vim-indent-guides'
+
 " Initialize plugin system
 call plug#end()
 
